@@ -1,15 +1,13 @@
 import Bucket from './Bucket'
 import Query from "./Http/Query";
 
-export class Client
-{
+class Client {
     /**
      * Create a new Client instance.
      *
      * @param read_key
      */
-    constructor(read_key)
-    {
+    constructor(read_key) {
         this.read_key = read_key;
     }
 
@@ -19,8 +17,7 @@ export class Client
      * @param  {String} bucket_name
      * @return {Bucket}
      */
-    initBucket(bucket_name)
-    {
+    initBucket(bucket_name) {
         return new Bucket(
             bucket_name,
             this.read_key
@@ -33,8 +30,7 @@ export class Client
      * @param   {Function} callback
      * @returns {Promise}
      */
-    list(callback)
-    {
+    list(callback) {
         return Query.raw('buckets', 'get', this.read_key).then(callback);
     }
 
@@ -45,15 +41,17 @@ export class Client
      * @param   {Function} callback
      * @returns {Promise<any>}
      */
-    batch(params, callback)
-    {
+    batch(params, callback) {
         const batch = {
             'read_key': this.read_key,
-            'requests': [
-                params
-            ]
+            'requests': params
         };
 
         return Query.raw('batch', 'post', null, batch).then(callback);
     }
 }
+
+export {
+    Client,
+    Bucket
+};

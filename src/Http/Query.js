@@ -23,8 +23,7 @@ class Query {
             path,
             method,
             api_key,
-            bucket.getParams(),
-            {
+            bucket.getParams(), {
                 'x-needletail-bucket': bucket.getName()
             }
         );
@@ -55,7 +54,7 @@ class Query {
         }).catch(thrown => {});
 
         response.then(res => {
-            if (res.data.warning && ! version_warning_logged) {
+            if (res.data.warning && !version_warning_logged) {
                 console.warn(res.data.warning);
 
                 // To prevent the warning being logged multiple times, make sure that it only happens once.

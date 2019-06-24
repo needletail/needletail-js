@@ -10,18 +10,28 @@ module.exports = {
         libraryTarget: 'umd'
     },
     module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['es2015']
-                    }
+        rules: [{
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: [
+                        [
+                            '@babel/preset-env',
+                            {
+                                targets: {
+                                    browsers: ['last 2 versions', 'ie >= 10']
+                                }
+                            }
+                        ]
+                    ],
+                    plugins: [
+                        '@babel/plugin-transform-classes'
+                    ]
                 }
             }
-        ]
+        }]
     },
     stats: {
         colors: true

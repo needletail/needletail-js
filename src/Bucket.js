@@ -1,15 +1,13 @@
 import Query from './Http/Query'
 
-class Bucket
-{
+class Bucket {
     /**
      * Create a new Bucket.
      *
      * @param  {String} name
      * @param  {String} read_key
      */
-    constructor(name, read_key)
-    {
+    constructor(name, read_key) {
         this.name = name;
 
         this.read_key = read_key;
@@ -22,8 +20,7 @@ class Bucket
      * @param  {Function} callback
      * @return {Promise}
      */
-    search(params, callback)
-    {
+    search(params, callback) {
         this.params = params;
 
         return Query.execute('search', this, this.read_key).then(callback);
@@ -36,8 +33,7 @@ class Bucket
      * @param  {Function} callback
      * @return {Promise}
      */
-    aggregation(params, callback)
-    {
+    aggregation(params, callback) {
         this.params = params;
 
         return Query.execute('aggregation', this, this.read_key).then(callback);
@@ -48,8 +44,7 @@ class Bucket
      *
      * @returns {String}
      */
-    getName()
-    {
+    getName() {
         return this.name;
     }
 
@@ -58,8 +53,7 @@ class Bucket
      *
      * @returns {Array}
      */
-    getParams()
-    {
+    getParams() {
         return this.params;
     }
 }
