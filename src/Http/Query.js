@@ -48,7 +48,7 @@ class Query {
         let response = axios({
             url: path,
             method: method,
-            baseURL: 'http://api.staging.needletail.io/2.0/',
+            baseURL: 'https://api.staging.needletail.io/2.0/',
             data: JSON.stringify(data),
             headers: objectAssign(predefined_headers, headers)
         }).catch(thrown => {});
