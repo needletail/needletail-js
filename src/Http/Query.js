@@ -46,6 +46,11 @@ class Query {
             'content-type': 'application/json; charset=UTF-8'
         };
 
+        // The batch query doesn't require an api key header, so we can remove it.
+        if (path === 'batch') {
+            delete predefined_headers['x-needletail-api-key'];
+        }
+
         let request = {
             url: path,
             method: method,
