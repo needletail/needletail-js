@@ -22,6 +22,9 @@
         "watch": "webpack --watch",
         "start": "http-server"
     },
-    "author": "support@needletail.io",
-    "license": "MIT"
+    "author": "Needletail <support@needletail.io>",
+    "license": "MIT",
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    }
 }
