@@ -24,9 +24,8 @@ class Query {
             path,
             method,
             api_key,
-            bucket.getParams(), {
-                'x-needletail-bucket': bucket.getName()
-            }
+            bucket.getParams(),
+            { 'x-needletail-bucket': bucket.getName() }
         );
     }
 
@@ -54,7 +53,7 @@ class Query {
         let request = {
             url: path,
             method: method,
-            baseURL: 'https://api.staging.needletail.io/2.0/',
+            baseURL: 'https://api.staging.needletail.io/2.1/',
             data: JSON.stringify(data),
             headers: objectAssign(predefined_headers, headers)
         };
@@ -65,7 +64,7 @@ class Query {
             });
         }
 
-        let response = axios(request).catch(thrown => {});
+        let response = axios(request).catch(thrown => { });
 
         response.then(res => {
             if (res.data.warning && !version_warning_logged) {
