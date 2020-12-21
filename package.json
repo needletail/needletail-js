@@ -1,30 +1,28 @@
 {
-    "name": "needletail-js",
-    "version": "1.1.0",
-    "description": "Needletail.js is a library to build high performance instant search experiences using Needletail",
-    "main": "public/needletail.js",
-    "dependencies": {
-        "axios": "^0.19.0",
-        "es6-promise": "^4.2.4",
-        "object-assign": "^4.1.1"
-    },
-    "devDependencies": {
-        "@babel/cli": "^7.4.4",
-        "@babel/core": "^7.4.5",
-        "@babel/plugin-transform-classes": "^7.4.4",
-        "@babel/preset-env": "^7.4.5",
-        "babel-loader": "^8.0.6",
-        "webpack": "^4.35.0",
-        "webpack-cli": "^3.1.0"
-    },
-    "scripts": {
-        "webpack": "webpack",
-        "watch": "webpack --watch",
-        "start": "http-server"
-    },
-    "author": "Needletail <support@needletail.io>",
-    "license": "MIT",
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com/"
-    }
+  "name": "@needletail/js",
+  "version": "3.0.3",
+  "description": "Needletail.js is a library to build high performance instant search experiences using Needletail",
+  "browser": "needletail-js.min.js",
+  "author": "support@needletail.io",
+  "repository": "git://github.com/needletail/needletail-js.git",
+  "license": "MIT",
+  "scripts": {
+    "build": "npm run eslint && npx webpack",
+    "reckless-build": "npx webpack",
+    "eslint": "eslint \"src/**/*\"",
+    "eslint-fix": "eslint \"src/**/*\" --fix"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.0.0",
+    "@typescript-eslint/parser": "^3.0.0",
+    "eslint": "^7.7.0",
+    "eslint-config-google": "^0.14.0",
+    "ts-loader": "^8.0.4",
+    "typescript": "^4.0.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "axios": "^0.21.0"
+  }
 }

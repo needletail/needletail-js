@@ -1,40 +1,23 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
-    entry: './src/Client.js',
     mode: 'production',
+    entry: ['./src/Needletail.ts'],
     output: {
-        path: path.resolve(__dirname, 'public'),
-        filename: 'needletail.js',
+        path: __dirname,
+        filename: 'needletail-js.min.js',
         libraryTarget: 'umd'
     },
+    resolve: {
+        extensions: ['.ts', '.js'],
+    },
     module: {
-        rules: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: [
-                        [
-                            '@babel/preset-env',
-                            {
-                                targets: {
-                                    browsers: ['last 2 versions', 'ie >= 10']
-                                }
-                            }
-                        ]
-                    ],
-                    plugins: [
-                        '@babel/plugin-transform-classes'
-                    ]
-                }
-            }
-        }]
-    },
-    stats: {
-        colors: true
-    },
-    devtool: 'source-map'
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+        ]
+    }
 };
