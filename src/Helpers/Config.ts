@@ -7,7 +7,7 @@ export class Config {
      *
      * @type {string} Contains the base url for all API requests
      */
-    static baseUrl: string = 'https://needletail-rework.test/1.0/';
+    static baseUrl: string = 'https://needletail-rework.test/3.0/';
 
     /**
      *
