@@ -1,13 +1,20 @@
-import {BaseEndpoint} from "../Helpers/BaseEndpoint";
-import {Synonym, Bucket} from "../Entities/Entities";
+import {BaseEndpoint} from '../Helpers/BaseEndpoint';
+// eslint-disable-next-line no-unused-vars
+import {Synonym, Bucket} from '../Entities/Entities';
 
+/**
+ * @class Synonyms
+ */
 export class Synonyms extends BaseEndpoint {
-
     /**
      * @type {Bucket} the bucket to fetch the synonyms from
      */
     bucket: Bucket;
 
+    /**
+     * @param {string} apiKey
+     * @param {Bucket} bucket
+     */
     constructor(apiKey: string, bucket: Bucket) {
         super(apiKey);
 
@@ -20,13 +27,13 @@ export class Synonyms extends BaseEndpoint {
      * @return {Promise<any>} Contains the result of the API call
      */
     async all(): Promise<Synonym[]> {
-        let data = await this.get(`buckets/${this.bucket.getName()}/synonyms`);
+        const data = await this.get(`buckets/${this.bucket.getName()}/synonyms`);
 
-        let synonyms: Synonym[] = [];
+        const synonyms: Synonym[] = [];
         // Map each response to an entity
         data.forEach((bucket: any) => {
             synonyms.push(this.toEntity(bucket));
-        })
+        });
 
         return synonyms;
     }
@@ -37,13 +44,14 @@ export class Synonyms extends BaseEndpoint {
      * @param {string} id The id of the synonym to find
      */
     async find(id: string): Promise<Synonym> {
-        let data = await this.get(`buckets/${this.bucket.getName()}/synonyms/${id}`);
+        const data = await this.get(`buckets/${this.bucket.getName()}/synonyms/${id}`);
 
         return this.toEntity(data);
     }
 
     /**
-     * @param data The data to map
+     * @param {any} data The data to map
+     * @return {Synonym}
      */
     toEntity(data: any): Synonym {
         return (new Synonym())
@@ -51,5 +59,4 @@ export class Synonyms extends BaseEndpoint {
             .setId(data.id)
             .setWords(data.words);
     }
-
 }

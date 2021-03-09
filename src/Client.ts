@@ -1,14 +1,11 @@
-import {Buckets, BulkSearch, Search} from "./Endpoints/Endpoints";
-import {Bucket} from "./Entities/Bucket";
+import {Buckets, BulkSearch, Search} from './Endpoints/Endpoints';
+import {Bucket} from './Entities/Bucket';
 
 /**
- *
  * @class Client
  */
 export class Client {
-
     /**
-     *
      * @type {string} The read key for the API
      */
     private readonly readKey: string;
@@ -43,21 +40,30 @@ export class Client {
 
     /**
      * Get all buckets from the API
+     * @return {Buckets} The buckets endpoint
      */
     buckets() {
         return new Buckets(this.getReadKey());
     }
 
+    /**
+     * @param {string} bucketName
+     * @return {Alternatives}
+     */
     alternatives(bucketName: string) {
-        let bucket = new Bucket();
+        const bucket = new Bucket();
         bucket.setApiKey(this.getReadKey())
             .setName(bucketName);
 
-        return bucket.alternatives()
+        return bucket.alternatives();
     }
 
+    /**
+     * @param {string} bucketName
+     * @return {Synonyms}
+     */
     synonyms(bucketName: string) {
-        let bucket = new Bucket();
+        const bucket = new Bucket();
         bucket.setApiKey(this.getReadKey())
             .setName(bucketName);
 
@@ -65,7 +71,6 @@ export class Client {
     }
 
     /**
-     *
      * @return {string} The read key for the API
      */
     getReadKey(): string {

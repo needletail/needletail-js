@@ -1,6 +1,9 @@
-import {Synonyms, Alternatives} from "../Endpoints/Endpoints";
-import {BaseEntity} from "../Helpers/BaseEntity";
+import {Synonyms, Alternatives} from '../Endpoints/Endpoints';
+import {BaseEntity} from '../Helpers/BaseEntity';
 
+/**
+ * @class Bucket
+ */
 export class Bucket extends BaseEntity {
     /**
      * @type {string} The name of the bucket
@@ -9,96 +12,176 @@ export class Bucket extends BaseEntity {
     /**
      * @type {boolean} Show the score of the search responses
      */
-    show_score: boolean;
+    showScore: boolean;
 
-    document_count: number;
+    /**
+     * @type {number}
+     */
+    documentCount: number;
 
-    searchable_attributes?: [];
+    /**
+     * @type {[]}
+     */
+    searchableAttributes?: [];
 
-    retrievable_attributes?: [];
+    /**
+     * @type {[]}
+     */
+    retrievableAttributes?: [];
 
-    group_by?: string;
+    /**
+     * @type {string}
+     */
+    groupBy?: string;
 
+    /**
+     * @type {[]}
+     */
     attributes: [];
 
+    /**
+     * @type {{}}
+     */
     boosts: {};
 
+    /**
+     * @param {string} name
+     * @return {Bucket}
+     */
     setName(name: string): Bucket {
         this.name = name;
         return this;
     }
 
+    /**
+     * @return {string}
+     */
     getName(): string {
         return this.name;
     }
 
-    setShowScore(show_score: boolean): Bucket {
-        this.show_score = show_score;
+    /**
+     * @param {boolean} showScore
+     * @return {Bucket}
+     */
+    setShowScore(showScore: boolean): Bucket {
+        this.showScore = showScore;
         return this;
     }
 
+    /**
+     * @return {boolean}
+     */
     isShowScore(): boolean {
-        return this.show_score;
+        return this.showScore;
     }
 
-    setDocumentCount(document_count: number): Bucket {
-        this.document_count = document_count;
+    /**
+     * @param {number} documentCount
+     * @return {Bucket}
+     */
+    setDocumentCount(documentCount: number): Bucket {
+        this.documentCount = documentCount;
         return this;
     }
 
+    /**
+     * @return {number}
+     */
     getDocumentCount(): number {
-        return this.document_count;
+        return this.documentCount;
     }
 
-    setSearchableAttributes(searchable_attributes?: []): Bucket {
-        this.searchable_attributes = searchable_attributes;
+    /**
+     * @param {[]} searchableAttributes
+     * @return {Bucket}
+     */
+    setSearchableAttributes(searchableAttributes?: []): Bucket {
+        this.searchableAttributes = searchableAttributes;
         return this;
     }
 
+    /**
+     * @return {null|[]}
+     */
     getSearchableAttributes(): null|[] {
-        return this.searchable_attributes;
+        return this.searchableAttributes;
     }
 
-    setRetrievableAttributes(retrievable_attributes?: []): Bucket {
-        this.retrievable_attributes = retrievable_attributes;
+    /**
+     * @param {[]} retrievableAttributes
+     * @return {Bucket}
+     */
+    setRetrievableAttributes(retrievableAttributes?: []): Bucket {
+        this.retrievableAttributes = retrievableAttributes;
         return this;
     }
 
+    /**
+     * @return {null|[]}
+     */
     getRetrievableAttributes(): null|[] {
-        return this.retrievable_attributes;
+        return this.retrievableAttributes;
     }
 
-    setGroupBy(group_by: string): Bucket {
-        this.group_by = group_by;
+    /**
+     * @param {string} groupBy
+     * @return {Bucket}
+     */
+    setGroupBy(groupBy: string): Bucket {
+        this.groupBy = groupBy;
         return this;
     }
 
+    /**
+     * @return {string}
+     */
     getGroupBy(): string {
-        return this.group_by;
+        return this.groupBy;
     }
 
+    /**
+     * @param {[]} attributes
+     * @return {Bucket}
+     */
     setAttributes(attributes: []): Bucket {
         this.attributes = attributes;
         return this;
     }
 
+    /**
+     * @return {[]}
+     */
     getAttributes(): [] {
         return this.attributes;
     }
 
+    /**
+     * @param {{}} boosts
+     * @return {Bucket}
+     */
     setBoosts(boosts: {}): Bucket {
         this.boosts = boosts;
         return this;
     }
 
+    /**
+     * @return {{}}
+     */
     getBoosts(): {} {
         return this.boosts;
     }
 
+    /**
+     * @return {Synonyms}
+     */
     synonyms(): Synonyms {
         return new Synonyms(this.getApiKey(), this);
     }
 
+    /**
+     * @return {Alternatives}
+     */
     alternatives(): Alternatives {
         return new Alternatives(this.getApiKey(), this);
     }

@@ -1,17 +1,25 @@
-import axios from "axios";
-import {Config} from "./Config";
+import axios from 'axios';
+import {Config} from './Config';
 
+/**
+ * @class BaseEndpoint
+ */
 export class BaseEndpoint {
-
     /**
      * @type {string} The apikey used for the requests
      */
     apiKey: string;
 
+    /**
+     * @param {string} apiKey
+     */
     constructor(apiKey: string) {
         this.apiKey = apiKey;
     }
 
+    /**
+     * @return {string}
+     */
     getApiKey(): string {
         return this.apiKey;
     }

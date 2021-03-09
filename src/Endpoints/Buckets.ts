@@ -1,19 +1,21 @@
-import {BaseEndpoint} from "../Helpers/BaseEndpoint";
-import {Bucket} from "../Entities/Bucket";
+import {BaseEndpoint} from '../Helpers/BaseEndpoint';
+import {Bucket} from '../Entities/Bucket';
 
+/**
+ * @class Buckets
+ */
 export class Buckets extends BaseEndpoint {
-
     /**
      * Gets all the buckets
      */
     async all() {
-        let data = await this.get('buckets');
+        const data = await this.get('buckets');
 
-        let buckets: Bucket[] = [];
+        const buckets: Bucket[] = [];
         // Map each entry to an entity
         data.forEach((bucket: any) => {
             buckets.push(this.toEntity(bucket));
-        })
+        });
 
         return buckets;
     }
@@ -24,13 +26,14 @@ export class Buckets extends BaseEndpoint {
      * @param {string} id The id of the bucket to fetch
      */
     async find(id: string) {
-        let data = await this.get(`buckets/${id}`);
+        const data = await this.get(`buckets/${id}`);
 
         return this.toEntity(data);
     }
 
     /**
-     * @param data The data to map
+     * @param {any} data The data to map
+     * @return {Bucket}
      */
     toEntity(data: any): Bucket {
         return (new Bucket())
