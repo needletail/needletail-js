@@ -1,5 +1,6 @@
 import {Buckets, BulkSearch, Search} from './Endpoints/Endpoints';
 import {Bucket} from './Entities/Bucket';
+import {Config} from './Helpers/Config';
 
 /**
  * @class Client
@@ -11,11 +12,18 @@ export class Client {
     private readonly readKey: string;
 
     /**
+     * @type {string}
+     */
+    baseUrl: string;
+
+    /**
      *
      * @param {string} readKey The read key for the API
+     * @param {string} baseUrl
      */
-    constructor(readKey: string) {
+    constructor(readKey: string, baseUrl: string) {
         this.readKey = readKey;
+        this.baseUrl = baseUrl ?? Config.baseUrl;
     }
 
     /**
@@ -25,7 +33,7 @@ export class Client {
      * @return {Promise<any>} Contains the result of the API call
      */
     async bulk(params: Object): Promise<any> {
-        return await (new BulkSearch(this.getReadKey())).find(params);
+        return await (new BulkSearch(this.getReadKey(), this.baseUrl)).find(params);
     }
 
     /**
@@ -35,7 +43,7 @@ export class Client {
      * @return {Promise<any>} Contains the result of the API call
      */
     async search(params: Object): Promise<any> {
-        return await (new Search(this.getReadKey())).find(params);
+        return await (new Search(this.getReadKey(), this.baseUrl)).find(params);
     }
 
     /**
@@ -43,7 +51,7 @@ export class Client {
      * @return {Buckets} The buckets endpoint
      */
     buckets() {
-        return new Buckets(this.getReadKey());
+        return new Buckets(this.getReadKey(), this.baseUrl);
     }
 
     /**

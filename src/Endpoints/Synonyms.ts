@@ -14,9 +14,10 @@ export class Synonyms extends BaseEndpoint {
     /**
      * @param {string} apiKey
      * @param {Bucket} bucket
+     * @param {string} baseUrl
      */
-    constructor(apiKey: string, bucket: Bucket) {
-        super(apiKey);
+    constructor(apiKey: string, bucket: Bucket, baseUrl: string) {
+        super(apiKey, baseUrl);
 
         this.bucket = bucket;
     }

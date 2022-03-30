@@ -14,9 +14,10 @@ export class Alternatives extends BaseEndpoint {
     /**
      * @param {string} apiKey
      * @param {string} bucket
+     * @param {string} baseUrl
      */
-    constructor(apiKey: string, bucket: Bucket) {
-        super(apiKey);
+    constructor(apiKey: string, bucket: Bucket, baseUrl: string) {
+        super(apiKey, baseUrl);
 
         this.bucket = bucket;
     }

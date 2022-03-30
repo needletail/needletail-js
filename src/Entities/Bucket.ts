@@ -44,6 +44,8 @@ export class Bucket extends BaseEntity {
      */
     boosts: {};
 
+    baseUrl: string;
+
     /**
      * @param {string} name
      * @return {Bucket}
@@ -176,13 +178,29 @@ export class Bucket extends BaseEntity {
      * @return {Synonyms}
      */
     synonyms(): Synonyms {
-        return new Synonyms(this.getApiKey(), this);
+        return new Synonyms(this.getApiKey(), this, this.getBaseUrl());
     }
 
     /**
      * @return {Alternatives}
      */
     alternatives(): Alternatives {
-        return new Alternatives(this.getApiKey(), this);
+        return new Alternatives(this.getApiKey(), this, this.getBaseUrl());
+    }
+
+    /**
+     * @param {string} baseUrl
+     * @return {Bucket}
+     */
+    setBaseUrl(baseUrl: string): Bucket {
+        this.baseUrl = baseUrl;
+        return this;
+    }
+
+    /**
+     * @return {string}
+     */
+    getBaseUrl(): string {
+        return this.baseUrl;
     }
 }

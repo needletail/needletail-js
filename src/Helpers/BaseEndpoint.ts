@@ -11,10 +11,17 @@ export class BaseEndpoint {
     apiKey: string;
 
     /**
-     * @param {string} apiKey
+     * @type {string}
      */
-    constructor(apiKey: string) {
+    baseUrl: string;
+
+    /**
+     * @param {string} apiKey
+     * @param {string} baseUrl
+     */
+    constructor(apiKey: string, baseUrl: string) {
         this.apiKey = apiKey;
+        this.baseUrl = baseUrl;
     }
 
     /**
@@ -33,7 +40,7 @@ export class BaseEndpoint {
      */
     async get(path: string, config: ConfigOptions = {}): Promise<any> {
         try {
-            const response = await axios.get(Config.baseUrl + path, this.getOptions(config));
+            const response = await axios.get(this.baseUrl + path, this.getOptions(config));
 
             if (response.data.warning) {
                 console.warn(response.data.warning);
@@ -54,7 +61,7 @@ export class BaseEndpoint {
      */
     async post(path: string, config: ConfigOptions = {}): Promise<any> {
         try {
-            const response = await axios.post(Config.baseUrl + path, config.data, this.getOptions(config));
+            const response = await axios.post(this.baseUrl + path, config.data, this.getOptions(config));
 
             if (response.data.warning) {
                 console.warn(response.data.warning);
