@@ -3,7 +3,8 @@ import {Buckets} from "./src/Endpoints/Buckets";
 declare module '@needletail/js' {
     export class Client {
         private readKey: string;
-        constructor(readKey: string);
+        baseUrl: string;
+        constructor(readKey: string, baseUrl: string);
         buckets(): Buckets;
         bulk(params: Object): Promise<any>;
         search(params: Object): Promise<any>;
