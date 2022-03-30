@@ -21,7 +21,7 @@ export class Client {
      * @param {string} readKey The read key for the API
      * @param {string} baseUrl
      */
-    constructor(readKey: string, baseUrl: string) {
+    constructor(readKey: string, baseUrl: string|null) {
         this.readKey = readKey;
         this.baseUrl = baseUrl ?? Config.baseUrl;
     }

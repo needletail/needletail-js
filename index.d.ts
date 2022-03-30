@@ -4,7 +4,7 @@ declare module '@needletail/js' {
     export class Client {
         private readKey: string;
         baseUrl: string;
-        constructor(readKey: string, baseUrl: string);
+        constructor(readKey: string, baseUrl: string|null);
         buckets(): Buckets;
         bulk(params: Object): Promise<any>;
         search(params: Object): Promise<any>;
