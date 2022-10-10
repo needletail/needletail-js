@@ -1,4 +1,3 @@
-import axios from 'axios';
 import {Config} from './Config';
 
 /**
@@ -40,13 +39,17 @@ export class BaseEndpoint {
      */
     async get(path: string, config: ConfigOptions = {}): Promise<any> {
         try {
-            const response = await axios.get(this.baseUrl + path, this.getOptions(config));
+            const response = await fetch(this.baseUrl + path, {
+                method: 'GET',
+                ...this.getOptions(config),
+            });
+            const newResponse: any = response;
 
-            if (response.data.warning) {
-                console.warn(response.data.warning);
+            if (response.body) {
+                newResponse.data = await response.json();
             }
 
-            return response;
+            return newResponse;
         } catch (e) {
             console.error(e);
         }
@@ -61,13 +64,17 @@ export class BaseEndpoint {
      */
     async post(path: string, config: ConfigOptions = {}): Promise<any> {
         try {
-            const response = await axios.post(this.baseUrl + path, config.data, this.getOptions(config));
+            const response = await fetch(this.baseUrl + path, {
+                method: 'POST',
+                ...this.getOptions(config),
+            });
+            const newResponse: any = response;
 
-            if (response.data.warning) {
-                console.warn(response.data.warning);
+            if (response.body) {
+                newResponse.data = await response.json();
             }
 
-            return response;
+            return newResponse;
         } catch (e) {
             console.error(e);
         }
@@ -86,8 +93,7 @@ export class BaseEndpoint {
                 [Config.headers.apiKey]: this.getApiKey(),
                 ...config.headers,
             },
-            data: config.data,
-            params: config.params,
+            body: JSON.stringify(config.data),
         };
     }
 }
@@ -95,5 +101,4 @@ export class BaseEndpoint {
 interface ConfigOptions {
     headers?: {};
     data?: {};
-    params?: {};
 }
